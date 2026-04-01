@@ -64,10 +64,12 @@ export class Game {
         this.ctx.fillText("P2 Stocks: "+this.players[1].stocks,650,30)
         this.ctx.fillText("P1: " + this.players[0].percent + "%", 20, 55)
         this.ctx.fillText("P2: " + this.players[1].percent + "%", 650, 55)
+        /* (Dette blev brugt til at teste hitstun)
         this.ctx.fillText("P1: " + this.players[0].hitstun, 20, 80)
         this.ctx.fillText("P2: " + this.players[1].hitstun, 650, 80)
         this.ctx.fillText("Combo on P1: " + this.players[0].combo + " " +this.players[0].comboCounter, 20, 105)
         this.ctx.fillText("Combo on P2: " + this.players[1].combo + " " + this.players[1].comboCounter, 580, 105)
+        */
     }
     
     handleCombat(){
