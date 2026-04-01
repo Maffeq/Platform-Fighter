@@ -79,6 +79,10 @@ export class StateMachine {
             this.player.startMove("downSpecial")
             this.changeState("attack")
             break
+        case Input[this.controls.specialPressed]:
+            this.player.startMove("neutralSpecial")
+            this.changeState("attack")
+            break
         
     
         case !this.player.onGround:
@@ -171,6 +175,10 @@ export class StateMachine {
                     this.player.startMove("downSpecial")
                     this.changeState("attack")
                     break
+                case Input[this.controls.specialPressed]:
+                    this.player.startMove("neutralSpecial")
+                    this.changeState("attack")
+                    break
     
             case this.player.onGround: 
                 this.changeState("idle")
@@ -186,6 +194,7 @@ export class StateMachine {
         // spawn hitboxes
         for (const hb of move.hitboxes) {
             if (p.moveFrame >= move.startup && hb.frame === (p.moveFrame - move.startup)) {
+                if (hb.requiresConnection && !p.moveConnected) continue
                 const newHB = p.spawnHitbox({
                     offsetX: hb.offsetX,
                     offsetY: hb.offsetY,

@@ -2,7 +2,6 @@ import { Input } from "./input.js"
 import { Collision } from "./collision.js"
 import { StateMachine } from "./stateMachine.js"
 import { Hitbox } from "./hitbox.js"
-// Control maps for each player
 const ControlMaps = {
     p1: {
         left: "p1Left",
@@ -42,7 +41,7 @@ const PlayerStats = {
         maxSpeed: 6,
         friction: 0.5,
         gravity: 0.6,
-        jumpForce: 12,  
+        jumpForce: 14,  
         maxFallSpeed: 12,
         maxJumps: 2
 
@@ -53,9 +52,9 @@ const PlayerStats = {
         maxSpeed: 7,
         friction: 0.4,
         gravity: 0.7,
-        jumpForce: 10, 
+        jumpForce: 12, 
         maxFallSpeed: 14,
-        maxJumps: 3
+        maxJumps: 2
     }
 }
 
@@ -106,10 +105,12 @@ export class Player1 {
         this.hitstun = 0
         this.percent = 0 
         this.endlag = 0
+        this.moveConnected = false
         this.combo = false
         this.hitstop = 0
         this.comboCounter = 0
         this.startUp = 0
+        
         
 if (this.type === "p1") {
     this.moves = {
@@ -419,7 +420,95 @@ if (this.type === "p1") {
 
             ]
 
+        }, 
+        neutralSpecial: {
+            name: "p1neutralSpecial",
+            startup: 25,
+            active: 36,
+            endlag: 45,
+            maxSpeed: 0,
+            hitboxes: [
+                {
+                    frame: 1,
+                    offsetX: this.width,
+                    offsetY: 10,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: -3,
+                    hitstun: 25,
+                    damage: 4,
+                },
+                {
+                    frame: 8,
+                    offsetX: this.width,
+                    offsetY: 10,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 15,
+                    offsetX: this.width,
+                    offsetY: 10,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 22,
+                    offsetX: this.width,
+                    offsetY: 10,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 29,
+                    offsetX: this.width,
+                    offsetY: 10,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 20,
+                    kbY: -10,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 36,
+                    offsetX: this.width + 100,
+                    offsetY: -70,
+                    width: 150,
+                    height: 150,
+                    duration: 15,
+                    kbX: 50,
+                    kbY: -50,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+
+            ]
         },
+
         sideSpecial: {
             name: "p1sideSpecial",
             startup: 7,
@@ -970,6 +1059,93 @@ if (this.type === "p1") {
             ]
 
         },
+        neutralSpecial: {
+            name: "p2neutralSpecial",
+            startup: 25,
+            active: 36,
+            endlag: 45,
+            maxSpeed: 0,
+            hitboxes: [
+                {
+                    frame: 1,
+                    offsetX: this.width,
+                    offsetY: 15,
+                    width: 30,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                },
+                {
+                    frame: 8,
+                    offsetX: this.width,
+                    offsetY: 15,
+                    width: 80,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 15,
+                    offsetX: this.width,
+                    offsetY: 15,
+                    width: 80,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 22,
+                    offsetX: this.width,
+                    offsetY: 15,
+                    width: 80,
+                    height: 30,
+                    duration: 7,
+                    kbX: 0,
+                    kbY: 0,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 29,
+                    offsetX: this.width,
+                    offsetY: 15,
+                    width: 80,
+                    height: 30,
+                    duration: 2,
+                    kbX: 20,
+                    kbY: -10,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+                {
+                    frame: 40,
+                    offsetX: 160,
+                    offsetY: -70,
+                    width: 150,
+                    height: 150,
+                    duration: 15,
+                    kbX: 50,
+                    kbY: -50,
+                    hitstun: 25,
+                    damage: 4,
+                    requiresConnection: true,
+                },
+
+            ]
+        },
         sideSpecial: {
             name: "p2sideSpecial",
             startup: 25,
@@ -1174,10 +1350,11 @@ if (this.type === "p1") {
     this.handleHorizontal()
     this.handleJump()
  }
- if (this.currentMove?.name === "p1sideSpecial" && !this.onGround && !this.inFreeFall) {
+ if ((this.currentMove?.name === "p1sideSpecial" && !this.onGround && !this.inFreeFall) || ((this.currentMove?.name === "p1neutralSpecial" || this.currentMove?.name === "p2neutralSpecial" ) && !this.onGround && this.moveConnected)) {
     this.vx = 0
     this.vy = 0
 }
+
 if (this.hitstop > 0) {
     this.hitstop--
     this.vx = 0
@@ -1359,49 +1536,7 @@ if (this.hitstop > 0) {
             this.moveConnected = false
         }
 
-        createP1Jab() {
-            this.lockedFacing = this.facing
-            const size = 35
-        
-            const offsetX = this.width   
-            const offsetY = 15
-        
-            const hitbox = new Hitbox(
-                this,        
-                offsetX,
-                offsetY,
-                size,
-                18,
-                6,
-                7,
-                -100,
-                3
-            )
-        
-            this.hitboxes.push(hitbox)
-        }
 
-        createP2Jab() {
-            this.lockedFacing = this.facing
-            const size = 55
-        
-            const offsetX = this.width
-            const offsetY = 5
-        
-            const hitbox = new Hitbox(
-                this,
-                offsetX,
-                offsetY,
-                size,
-                30,
-                10,
-                12,
-                -10,
-                10
-            )
-        
-            this.hitboxes.push(hitbox)
-        }
         
         spawnHitbox(config) {
             const hitbox = new Hitbox(
@@ -1426,7 +1561,7 @@ if (this.hitstop > 0) {
 
     applyGravity() {
         if(this.currentMove?.ignoreGravity) return
-        if (this.currentMove?.name === "p1sideSpecial" && !this.onGround) {
+        if ((this.currentMove?.name === "p1sideSpecial" && !this.onGround) || ((this.currentMove?.name === "p1neutralSpecial" || this.currentMove?.name === "p2neutralSpecial") && this.moveConnected)) {
             return  
         }
         this.vy += this.gravity

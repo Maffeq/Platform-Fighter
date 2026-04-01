@@ -86,6 +86,7 @@ export class Game {
     
         hitbox.hasHit = true
         this.players.comboCounter += 1
+        attacker.moveConnected = true
     
             }
     
